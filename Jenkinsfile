@@ -4,18 +4,15 @@ pipeline {
   stages {
     stage('Pull Code') {
       steps {
-        echo "Cloning repo and listing files"
+        echo "Pulling latest code"
         sh 'ls -al'
       }
     }
-    stage('Build') {
+
+    stage('Deploy to EC2') {
       steps {
-        echo "Build step simulated..."
-      }
-    }
-    stage('Deploy') {
-      steps {
-        echo "Deploying to EC2 (simulated for now)"
+        echo "Deploying to nginx root"
+        sh 'sudo cp index.html /usr/share/nginx/html/index.html'
       }
     }
   }
