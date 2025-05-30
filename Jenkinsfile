@@ -2,17 +2,17 @@ pipeline {
   agent any
 
   stages {
-    stage('Pull Code') {
+    stage('Clone Repo') {
       steps {
-        echo "Pulling latest code"
-        sh 'ls -al'
+        echo "📥 Cloning GitHub repo"
+        sh 'git clone https://github.com/reach2venkat2/cineinterval-web.git workspace'
       }
     }
 
     stage('Deploy to EC2') {
       steps {
-        echo "Deploying to nginx root"
-        sh 'sudo cp index.html /usr/share/nginx/html/index.html'
+        echo "🚀 Deploying to EC2 (NGINX)"
+        sh 'sudo cp workspace/index.html /usr/share/nginx/html/index.html'
       }
     }
   }
